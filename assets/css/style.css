@@ -1,0 +1,429 @@
+/*FUENTES*/
+
+@font-face {
+  font-family: "PlusJakartaSans-Bold";
+  src: url("../fonts/static/PlusJakartaSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PlusJakartaSans-Medium";
+  src: url("../fonts/static/PlusJakartaSans-Medium.ttf") format("truetype");
+  font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PlusJakartaSans-VariableFont_wght-Medium";
+  src: url("../fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+  font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PlusJakartaSans-Italic-VariableFont_wght";
+  src: url("../fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+:root {
+  /*Colores Primarios*/
+  --color-lime: hsl(61, 70%, 52%);
+  --color-red: hsl(4, 69%, 50%);
+  --fontSizeP: 16px;
+
+  /*Colores Neutrales*/
+  --slate-100: hsl(202, 86%, 94%);
+  --slate-300: hsl(203, 41%, 72%);
+  --slate-500: hsl(200, 26%, 54%);
+  --slate-700: hsl(200, 24%, 40%);
+  --slate-900: hsl(202, 55%, 16%);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'PlusJakartaSans-VariableFont_wght-Medium';
+}
+
+#body {
+  background: #e3f4fc;
+  overflow-x: hidden;
+}
+
+#content {
+  display: flex;
+  background-color: #fff;
+
+  margin: 0 auto;
+  margin-top: 50px;
+  max-width: 900px;
+  border-radius: 22px;
+  box-shadow: 2px 4px 50px rgba(0, 0, 0, 0.15);
+}
+
+#content p {
+  font-size: var(--fontSizeP);
+}
+
+/* Calculator Section */
+
+#calculator {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 35px;
+  height: 100%;
+}
+
+#header1{
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    a{
+        color: var(--slate-500);
+        font-weight: 500;
+
+        &:hover{
+          color: var(--slate-900);
+        }
+    }
+
+}
+
+/*Inputs*/
+
+label{
+    color: var(--slate-700);
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+
+
+input[type="text"], input[type="number"]{
+    font-weight: bold;
+
+    &:hover{
+      cursor: pointer;
+    }
+}
+
+/*Inputs Text*/
+#amount-cont, #term-cont, #rate-cont{
+  width: 100%;
+  border: 0px solid red;
+  margin-bottom: 20px;
+}
+
+#two-columns{
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1.2rem;
+}
+
+#amount-input, #term-input, #rate-input{
+  display: flex;
+  width: 100%;
+  background-color: var(--slate-100);
+  border-radius: 4px;
+  border: 1px solid var(--slate-500);
+  margin-top: 8px;
+
+  .icon{
+    display: grid;
+    place-content: center;
+    padding: 5px 12px;
+    border: none;
+    font-size: 14px;
+    color: var(--slate-500);
+    font-family: "PlusJakartaSans-Bold";
+  }
+
+  input{
+    outline: none;
+    padding-left: 10px;
+    color: var(--slate-900);
+    font-family: "PlusJakartaSans-VariableFont_wght-Medium";
+
+    /* &:focus + #amount-input{
+      border: 2px solid var(--color-lime);
+    } */
+
+  }
+
+  &:hover{
+    border: 1px solid var(--slate-900);
+  }
+
+}
+
+#amount-input:focus-within{
+  border: 1px solid var(--color-lime);
+}
+
+#term-input:focus-within{
+  border: 1px solid var(--color-lime);
+}
+
+#rate-input:focus-within{
+  border: 1px solid var(--color-lime);
+}
+
+
+#term-input, #rate-input{
+  input{
+    border: none;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .icon{
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+#amount-input{
+  input{
+    border: none;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .icon{
+    border-radius:4px 0 0 4px;
+  }
+} 
+
+#amount, #term, #rate{
+  width: 100%;
+  height: 35px;
+}
+
+/*RADIOS*/
+
+#radio1, #radio2{
+  display: flex;
+  align-items: center;
+  height: 2.4rem;
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#radio1{
+  margin-bottom: 10px;
+}
+
+.checked{
+  background-color: rgba(215, 218, 47, .2);
+  border: 1px solid var(--color-lime);
+}
+
+.not-checked{
+  border: 1px solid var(--slate-500);
+
+  &:hover{
+    border: 1px solid var(--color-lime);
+  }
+}
+
+input[type="radio"]{
+  cursor: pointer;
+  margin: 5px 10px;
+  width: 13px;
+  height: 13px;
+  transform: scale(1.2);
+  appearance: none;
+  border-radius: 50%;
+  border: 1px solid var(--slate-500);
+  background-color: #fff;
+}
+
+input[type="radio"]:checked{
+  border: 1px solid var(--color-lime);
+  background-color: white;
+}
+
+input[type="radio"]:checked::after {
+  content: '';
+  display: block;
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-lime);
+  border-radius: 50%;
+  margin: 0.13rem;
+}
+
+
+.radios span{
+  margin-left: 5px;
+  font-weight: 600;
+  font-size: 16px;
+  font-family: "PlusJakartaSans-Bold";
+}
+
+/* Errors */
+.error{
+  margin-top: 10px;
+  font-size: 12px;
+  color: red;
+  display: none;
+}
+
+#calculator h2,
+#result h2 {
+  font-size: 20px;
+  font-family: "PlusJakartaSans-Bold";
+}
+
+#calculator h2 {
+    color: var(--slate-900);
+}
+
+.button{
+    user-select: none;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    width: fit-content;
+
+    padding: 12px 35px;
+    border-radius: 50px;
+    border: none;
+    margin-top: 35px;
+    background-color: var(--color-lime);
+    cursor: pointer;
+
+    img{
+        width: 20px;
+    }
+
+    &:hover{
+      background-color: rgba(215, 218, 47, .6);
+    }
+}
+
+/* Results Section */
+#result h2 {
+    color: var(--slate-100);
+    margin-bottom: 20px;
+}
+
+#result {
+  flex: 1;
+  display: flex;
+  height: inherit;
+  background-color: #133040;
+  color: #ccc;
+  padding: 35px;
+  border-radius: 0 22px 22px 60px;
+}
+
+/*Empty*/
+#empty{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: inherit;
+
+
+  p{
+    text-align: center;
+    font-size: 14px;
+  }
+
+}
+
+#completed{
+  display: none;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  height: inherit;
+
+  p{
+    font-size: 15px;
+    color: var(--slate-300);
+  }
+
+}
+
+/*Panel Result*/
+#panelResult{
+  width: 100%;
+  background-color: #0c212c;
+  padding: 25px;
+  margin-top: 35px;
+  border-radius: 6px;
+  border: none;
+  border-top: 4px solid var(--color-lime);
+}
+
+.hr{
+  width: 100%;
+  height: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 20px 0;
+}
+
+.month-result{
+  font-family: "PlusJakartaSans-Bold";
+  font-size: 42px;
+  color: var(--color-lime);
+}
+
+.total-result{
+  font-family: "PlusJakartaSans-Bold";
+  color: var(--slate-100);
+  padding: 10px 0;
+}
+
+/*Media Queries*/
+/* A los 768px se recoloca el diseño para adaptarse a tablets, y cuando tenga menos de 576px las columnas de Repayments e Interest Only se disponen cada una en una sola fila, usando una clase de Bootstrap 5*/
+@media (max-width: 768px) {
+
+  #content{
+    flex-direction: column;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    border-radius: 0px;
+    box-shadow: none;    
+  }
+
+  #header1{
+    grid-auto-flow: row;
+}
+
+#two-columns{
+  grid-auto-flow: row;
+  gap: 0rem;
+}
+
+  #result {
+    height: 100%;
+    margin: 0;
+    border-radius: 0px;
+  }
+
+  .button{
+    margin: 0 auto;
+    margin-top: 35px;
+  }
+
+  .attribution{
+    display: none;
+  }
+}
