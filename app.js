@@ -1,6 +1,5 @@
 const clearAll = document.querySelector("#clearAll");
 const form = document.querySelector("#calculator");
-const inputsText = document.querySelectorAll('input[type="text"]');
 
 // Resultados, Empty y Completed
 const empty = document.querySelector("#empty");
@@ -15,30 +14,60 @@ let rate = document.querySelector("#rate");
 let repayment = document.querySelector("#repayment");
 let interestOnly = document.querySelector("#interest-only");
 
+const contRadio1 = document.querySelector("#radio1");
+const contRadio2 = document.querySelector("#radio2");
 
-const contRadio1 = document.querySelector('#radio1');
-const contRadio2 = document.querySelector('#radio2');
-
-contRadio1.addEventListener('click', ()=>{
+contRadio1.addEventListener("click", () => {
   repayment.checked = true;
 
-  contRadio1.classList.add('checked');
-  contRadio1.classList.remove('not-checked');
+  contRadio1.classList.add("checked");
+  contRadio1.classList.remove("not-checked");
 
-  contRadio2.classList.add('not-checked');
-  contRadio2.classList.remove('checked');
+  contRadio2.classList.add("not-checked");
+  contRadio2.classList.remove("checked");
 });
 
-contRadio2.addEventListener('click', ()=>{
+contRadio2.addEventListener("click", () => {
   interestOnly.checked = true;
 
-  contRadio2.classList.add('checked');
-  contRadio2.classList.remove('not-checked');
+  contRadio2.classList.add("checked");
+  contRadio2.classList.remove("not-checked");
 
-  contRadio1.classList.add('not-checked');
-  contRadio1.classList.remove('checked');
+  contRadio1.classList.add("not-checked");
+  contRadio1.classList.remove("checked");
 });
 
+// Vaciamos cada campo y reseteamos sus estilos
+clearAll.addEventListener("click", () => {
+  if (repayment.checked) {
+    repayment.parentElement.style.backgroundColor = "white";
+    repayment.parentElement.style.borderColor = "rgb(107, 148, 168)";
+  } else if (interestOnly.checked) {
+    interestOnly.parentElement.style.backgroundColor = "white";
+    interestOnly.parentElement.style.borderColor = "rgb(107, 148, 168)";
+  }
+
+  form.reset();
+
+  const inputs = [amount, rate, term];
+  const errores = document.querySelectorAll(".error");
+  const icons = document.querySelectorAll(".icon");
+
+  inputs.forEach((input) => {
+    input.parentElement.classList.remove("failed");
+    input.parentElement.style.border = "1px solid hsl(200, 26%, 54%)";
+  });
+
+  errores.forEach((error) => {
+    error.style.display = "none";
+  });
+
+  icons.forEach((icon) => {
+    icon.style.backgroundColor = "hsl(202, 86%, 94%)";
+    icon.style.color = "hsl(200, 26%, 54%)";
+    icon.parentElement.style.border = "1px solid hsl(200, 26%, 54%)";
+  });
+});
 
 // Validar los datos introducidos en el primer input, solo se pueden numeros y cada 3, escribe una coma para marcar los miles
 document.getElementById("amount").addEventListener("input", function (e) {
@@ -61,83 +90,138 @@ document.getElementById("term").addEventListener("input", function (e) {
   }
 });
 
+// Valida el campo de Rate, para que solo pueda introducir numeros y puntos para meter decimales, no puede meter dos puntos seguidos ni empezar o terminar con un punto
+document.getElementById("rate").addEventListener("input", function (e) {
+  let valor = e.target.value;
+
+  if (!/^[0-9.]*$/.test(valor)) {
+    valor = valor.slice(0, -1);
+  }
+
+  const regex = /^(?!.*\.\.)(?!\.)[0-9]+(?:\.[0-9]*)?$/;
+  if (!regex.test(valor) && valor !== "") {
+    valor = valor.slice(0, -1);
+  }
+
+  e.target.value = valor;
+});
+
 // Validar cada campo
-function validateField(input, errorSelector, isAmount) {
+function validateField(input, errorSelector) {
   const span = input.previousElementSibling || input.nextElementSibling;
   const errorMessage = document.querySelector(errorSelector);
 
   if (input.value === "") {
-    input.classList.add("failed");
-
-    span.parentElement.style.border = "none";
+    input.parentElement.classList.add("failed");
+    input.parentElement.style.border = "1px solid hsl(4, 69%, 50%)";
+    span.style.border = "none";
+    input.style.border = "none";
 
     span.style.backgroundColor = "hsl(4, 69%, 50%)";
-    span.style.border = "1px solid hsl(4, 69%, 50%)";
     span.style.color = "white";
-    input.style.border = "1px solid hsl(4, 69%, 50%)";
     errorMessage.style.display = "block";
-
-    isAmount
-      ? (input.style.borderLeft = "none")
-      : (input.style.borderRight = "none");
   } else {
-    input.classList.remove("failed");
-
+    input.parentElement.classList.remove("failed");
+    input.parentElement.style.border = "1px solid hsl(200, 26%, 54%)";
     span.style.backgroundColor = "hsl(202, 86%, 94%)";
-    span.style.border = "1px solid grey";
-    span.style.color = "black";
-    input.style.border = "1px solid grey";
+    span.style.color = "hsl(200, 26%, 54%)";
     errorMessage.style.display = "none";
-
-    isAmount
-      ? (input.style.borderLeft = "none")
-      : (input.style.borderRight = "none");
   }
 }
 
 // Si el foco está o no en el input sus colores cambian
-function isFocus(input, isAmount) {
+function isFocus(input) {
   const span = input.previousElementSibling || input.nextElementSibling;
 
   input.addEventListener("focus", () => {
-    input.classList.add("green");
-
-    if (!span.classList.contains("failed")) {
-      input.style.border = "1px solid hsl(61, 70%, 52%)";
-      span.style.border = "1px solid hsl(61, 70%, 52%)";
-      span.style.backgroundColor = "hsl(61, 70%, 52%)";
-      span.style.color = "hsl(202, 55%, 16%)";
-
-      isAmount
-        ? (input.style.borderLeft = "none")
-        : (input.style.borderRight = "none");
-    }
+    input.parentElement.style.border = "1px solid hsl(61, 70%, 52%)";
+    input.style.border = "none";
+    span.style.border = "none";
+    span.style.backgroundColor = "hsl(61, 70%, 52%)";
+    span.style.color = "hsl(202, 55%, 16%)";
   });
 
   input.addEventListener("blur", () => {
-    input.classList.remove("green");
-
-    if (input.classList.contains("failed")) {
+    if (input.parentElement.classList.contains("failed")) {
       span.style.backgroundColor = "hsl(4, 69%, 50%)";
-      span.style.border = "1px solid hsl(4, 69%, 50%)";
       span.style.color = "white";
-      input.style.border = "1px solid hsl(4, 69%, 50%)";
+      input.parentElement.style.border = "1px solid hsl(4, 69%, 50%)";
+      input.parentElement.style.borderColor = "hsl(4, 69%, 50%)";
     } else {
-      input.style.border = "1px solid #ced4da";
-      span.style.border = "1px solid #ced4da";
+      input.parentElement.style.borderColor = "hsl(200, 26%, 54%)";
       span.style.backgroundColor = "hsl(202, 86%, 94%)";
       span.style.color = "hsl(200, 26%, 54%)";
-
-      isAmount
-        ? (input.style.borderLeft = "none")
-        : (input.style.borderRight = "none");
     }
   });
 }
 
-isFocus(amount, true);
-isFocus(term, false);
-isFocus(rate, false);
+isFocus(amount);
+isFocus(term);
+isFocus(rate);
+
+// Si haces hover a un elemento, este cambia de color sus bordes
+function isHover(input) {
+  const span = input.previousElementSibling || input.nextElementSibling;
+
+  input.addEventListener("mouseover", () => {
+    let estilo = window.getComputedStyle(input.parentElement);
+    const colorBorde = estilo.getPropertyValue("border-color");
+
+    if (
+      colorBorde === "rgb(107, 148, 168)" &&
+      input !== repayment &&
+      input !== interestOnly
+    ) {
+      input.parentElement.style.borderColor = "hsl(202, 55%, 16%)";
+    } else if (input.id === "radio1" || input.id === "radio2") {
+      input.style.borderColor = "hsl(61, 70%, 52%)";
+    }
+  });
+
+  input.addEventListener("mouseout", () => {
+    let estilo = window.getComputedStyle(input.parentElement);
+    const colorBorde = estilo.getPropertyValue("border-color");
+
+    if (
+      colorBorde === "rgb(18, 47, 63)" &&
+      input !== repayment &&
+      input !== interestOnly
+    ) {
+      input.parentElement.style.borderColor = "rgb(107, 148, 168)";
+    } else if (
+      (input.id === "radio1" && !repayment.checked) ||
+      (input.id === "radio2" && !interestOnly.checked)
+    ) {
+      input.style.borderColor = "hsl(200, 26%, 54%)";
+    }
+  });
+}
+
+isHover(amount);
+isHover(term);
+isHover(rate);
+
+isHover(repayment.parentElement);
+isHover(interestOnly.parentElement);
+
+
+repayment.parentElement.addEventListener('click', () => {
+  if (repayment.checked) {
+      repayment.parentElement.style.backgroundColor = "rgba(215, 218, 47, 0.2)";
+      interestOnly.parentElement.style.borderColor = 'hsl(200, 26%, 54%)';
+      interestOnly.parentElement.style.backgroundColor = "white";
+  } 
+});
+
+interestOnly.parentElement.addEventListener('click', () => {
+  if (interestOnly.checked) {
+      interestOnly.parentElement.style.backgroundColor = "rgba(215, 218, 47, 0.2)";
+      repayment.parentElement.style.borderColor = 'hsl(200, 26%, 54%)';
+      repayment.parentElement.style.backgroundColor = "white";
+  } 
+});
+
+
 
 // Calcular el precio
 function calculate(isRepayment) {
@@ -204,24 +288,3 @@ form.addEventListener("submit", (e) => {
     }
   }
 });
-
-
-/*Funcion responsive para cambiar el layout de bootstrap*/
-// function responsive() {
-//   if (window.innerWidth <= 768) {
-//     document.getElementById("mortgage-term").classList.remove("col");
-//     document.getElementById("mortgage-term").classList.add("col6");
-
-//     document.getElementById("interest-rate").classList.remove("col");
-//     document.getElementById("interest-rate").classList.add("col6");
-//   } else {
-//     document.getElementById("mortgage-term").classList.add("col");
-//     document.getElementById("mortgage-term").classList.remove("col6");
-
-//     document.getElementById("interest-rate").classList.add("col");
-//     document.getElementById("interest-rate").classList.remove("col6");
-//   }
-// }
-
-// responsive();
-// window.addEventListener("resize", responsive);

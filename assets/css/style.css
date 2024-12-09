@@ -1,5 +1,4 @@
 /*FUENTES*/
-
 @font-face {
   font-family: "PlusJakartaSans-Bold";
   src: url("../fonts/static/PlusJakartaSans-Bold.ttf") format("truetype");
@@ -40,14 +39,14 @@
   --slate-300: hsl(203, 41%, 72%);
   --slate-500: hsl(200, 26%, 54%);
   --slate-700: hsl(200, 24%, 40%);
-  --slate-900: hsl(202, 55%, 16%);
+  --slate-900: hsl(201, 56%, 16%);
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'PlusJakartaSans-VariableFont_wght-Medium';
+  font-family: "PlusJakartaSans-VariableFont_wght-Medium";
 }
 
 #body {
@@ -58,7 +57,6 @@
 #content {
   display: flex;
   background-color: #fff;
-
   margin: 0 auto;
   margin-top: 50px;
   max-width: 900px;
@@ -71,7 +69,6 @@
 }
 
 /* Calculator Section */
-
 #calculator {
   flex: 1;
   display: flex;
@@ -80,57 +77,58 @@
   height: 100%;
 }
 
-#header1{
-    display: grid;
-    grid-auto-flow: column;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
+#header1 {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 
-    a{
-        color: var(--slate-500);
-        font-weight: 500;
+  a {
+    color: var(--slate-500);
+    font-weight: 500;
 
-        &:hover{
-          color: var(--slate-900);
-        }
+    &:hover {
+      color: var(--slate-900);
     }
-
+  }
 }
 
 /*Inputs*/
-
-label{
-    color: var(--slate-700);
-    font-weight: 500;
-    margin-bottom: 8px;
-    font-size: 14px;
+label {
+  color: var(--slate-700);
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 14px;
 }
 
+input[type="text"],
+input[type="number"] {
+  font-weight: bold;
 
-
-input[type="text"], input[type="number"]{
-    font-weight: bold;
-
-    &:hover{
-      cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 /*Inputs Text*/
-#amount-cont, #term-cont, #rate-cont{
+#amount-cont,
+#term-cont,
+#rate-cont {
   width: 100%;
   border: 0px solid red;
   margin-bottom: 20px;
 }
 
-#two-columns{
+#two-columns {
   display: grid;
   grid-auto-flow: column;
   gap: 1.2rem;
 }
 
-#amount-input, #term-input, #rate-input{
+#amount-input,
+#term-input,
+#rate-input {
   display: flex;
   width: 100%;
   background-color: var(--slate-100);
@@ -138,7 +136,7 @@ input[type="text"], input[type="number"]{
   border: 1px solid var(--slate-500);
   margin-top: 8px;
 
-  .icon{
+  .icon {
     display: grid;
     place-content: center;
     padding: 5px 12px;
@@ -148,67 +146,81 @@ input[type="text"], input[type="number"]{
     font-family: "PlusJakartaSans-Bold";
   }
 
-  input{
+  input {
     outline: none;
     padding-left: 10px;
     color: var(--slate-900);
     font-family: "PlusJakartaSans-VariableFont_wght-Medium";
-
-    /* &:focus + #amount-input{
-      border: 2px solid var(--color-lime);
-    } */
-
-  }
-
-  &:hover{
-    border: 1px solid var(--slate-900);
   }
 
 }
 
-#amount-input:focus-within{
+/*Clases de validacion*/
+/* .failed{
+  border: 1px solid var(--color-red);
+} */
+
+/* .success{
+  border: 1px solid var(--color-lime);
+} */
+
+/* .neutral{
+  background-color: red;
+  border: 1px solid var(--slate-500);
+} */
+
+/* .hover{
+  background-color: green;
+  border: 2px solid purple;
+} */
+
+/*Fin de clases de validacion*/
+
+/* #amount-input:focus-within {
   border: 1px solid var(--color-lime);
 }
 
-#term-input:focus-within{
+#term-input:focus-within {
   border: 1px solid var(--color-lime);
 }
 
-#rate-input:focus-within{
+#rate-input:focus-within {
   border: 1px solid var(--color-lime);
-}
+} */
 
-
-#term-input, #rate-input{
-  input{
+#term-input,
+#rate-input {
+  input {
     border: none;
     border-radius: 4px 0 0 4px;
   }
 
-  .icon{
+  .icon {
     border-radius: 0 4px 4px 0;
   }
 }
 
-#amount-input{
-  input{
+#amount-input {
+  input {
     border: none;
     border-radius: 0 4px 4px 0;
   }
 
-  .icon{
-    border-radius:4px 0 0 4px;
+  .icon {
+    border-radius: 4px 0 0 4px;
   }
-} 
+}
 
-#amount, #term, #rate{
+#amount,
+#term,
+#rate {
   width: 100%;
   height: 35px;
 }
 
 /*RADIOS*/
-
-#radio1, #radio2{
+#radio1,
+#radio2 {
   display: flex;
   align-items: center;
   height: 2.4rem;
@@ -217,24 +229,24 @@ input[type="text"], input[type="number"]{
   cursor: pointer;
 }
 
-#radio1{
+#radio1 {
   margin-bottom: 10px;
 }
 
-.checked{
-  background-color: rgba(215, 218, 47, .2);
+.checked {
+  background-color: rgba(215, 218, 47, 0.2);
   border: 1px solid var(--color-lime);
 }
 
-.not-checked{
+.not-checked {
   border: 1px solid var(--slate-500);
 
-  &:hover{
+  /* &:hover {
     border: 1px solid var(--color-lime);
-  }
+  } */
 }
 
-input[type="radio"]{
+input[type="radio"] {
   cursor: pointer;
   margin: 5px 10px;
   width: 13px;
@@ -246,13 +258,13 @@ input[type="radio"]{
   background-color: #fff;
 }
 
-input[type="radio"]:checked{
+input[type="radio"]:checked {
   border: 1px solid var(--color-lime);
   background-color: white;
 }
 
 input[type="radio"]:checked::after {
-  content: '';
+  content: "";
   display: block;
   width: 7px;
   height: 7px;
@@ -261,8 +273,7 @@ input[type="radio"]:checked::after {
   margin: 0.13rem;
 }
 
-
-.radios span{
+.radios span {
   margin-left: 5px;
   font-weight: 600;
   font-size: 16px;
@@ -270,7 +281,7 @@ input[type="radio"]:checked::after {
 }
 
 /* Errors */
-.error{
+.error {
   margin-top: 10px;
   font-size: 12px;
   color: red;
@@ -284,39 +295,38 @@ input[type="radio"]:checked::after {
 }
 
 #calculator h2 {
-    color: var(--slate-900);
+  color: var(--slate-900);
 }
 
-.button{
-    user-select: none;
-    display: grid;
-    grid-auto-flow: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-weight: bold;
-    width: fit-content;
+.button {
+  user-select: none;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: bold;
+  width: fit-content;
+  padding: 12px 35px;
+  border-radius: 50px;
+  border: none;
+  margin-top: 35px;
+  background-color: var(--color-lime);
+  cursor: pointer;
 
-    padding: 12px 35px;
-    border-radius: 50px;
-    border: none;
-    margin-top: 35px;
-    background-color: var(--color-lime);
-    cursor: pointer;
+  img {
+    width: 20px;
+  }
 
-    img{
-        width: 20px;
-    }
-
-    &:hover{
-      background-color: rgba(215, 218, 47, .6);
-    }
+  &:hover {
+    background-color: rgba(215, 218, 47, 0.6);
+  }
 }
 
 /* Results Section */
 #result h2 {
-    color: var(--slate-100);
-    margin-bottom: 20px;
+  color: var(--slate-100);
+  margin-bottom: 20px;
 }
 
 #result {
@@ -330,37 +340,34 @@ input[type="radio"]:checked::after {
 }
 
 /*Empty*/
-#empty{
+#empty {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: inherit;
 
-
-  p{
+  p {
     text-align: center;
     font-size: 14px;
   }
-
 }
 
-#completed{
+#completed {
   display: none;
   flex-direction: column;
   align-items: start;
   justify-content: start;
   height: inherit;
 
-  p{
+  p {
     font-size: 15px;
     color: var(--slate-300);
   }
-
 }
 
 /*Panel Result*/
-#panelResult{
+#panelResult {
   width: 100%;
   background-color: #0c212c;
   padding: 25px;
@@ -370,47 +377,50 @@ input[type="radio"]:checked::after {
   border-top: 4px solid var(--color-lime);
 }
 
-.hr{
+.hr {
   width: 100%;
   height: 1px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   margin: 20px 0;
 }
 
-.month-result{
+.month-result {
   font-family: "PlusJakartaSans-Bold";
   font-size: 42px;
   color: var(--color-lime);
 }
 
-.total-result{
+.total-result {
   font-family: "PlusJakartaSans-Bold";
   color: var(--slate-100);
   padding: 10px 0;
 }
 
 /*Media Queries*/
-/* A los 768px se recoloca el diseño para adaptarse a tablets, y cuando tenga menos de 576px las columnas de Repayments e Interest Only se disponen cada una en una sola fila, usando una clase de Bootstrap 5*/
+/* A los 768px se recoloca el diseño para adaptarse a tablets y móviles*/
 @media (max-width: 768px) {
-
-  #content{
+  #content {
     flex-direction: column;
     margin: 0;
     width: 100vw;
     height: 100vh;
     max-width: none;
     border-radius: 0px;
-    box-shadow: none;    
+    box-shadow: none;
   }
 
-  #header1{
+  #header1 {
     grid-auto-flow: row;
-}
+  }
 
-#two-columns{
-  grid-auto-flow: row;
-  gap: 0rem;
-}
+  a {
+    width: fit-content;
+  }
+
+  #two-columns {
+    grid-auto-flow: row;
+    gap: 0rem;
+  }
 
   #result {
     height: 100%;
@@ -418,12 +428,12 @@ input[type="radio"]:checked::after {
     border-radius: 0px;
   }
 
-  .button{
+  .button {
     margin: 0 auto;
     margin-top: 35px;
   }
 
-  .attribution{
+  .attribution {
     display: none;
   }
 }
